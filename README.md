@@ -47,8 +47,34 @@ https://raw.githubusercontent.com/csjoyxy/cainiao-loon-reminder/main/cainiao_pic
 
 ---
 
+## 🛡️ 附：iOS 老版本（16.4.1 等）WebKit 浏览器防投毒插件套件
+
+针对长期停留在 iOS 15–17（如 iOS 16.4.1 巨魔环境）设备的浏览器安全加固，本仓库额外提供**「核心 IOC 零延迟拦截」+「可选恶意域名安全 DoH」**双插件拆分方案，方便按国内网络环境自由组合：
+
+### 1. 核心插件：iOS WebKit 水坑与漏洞链防护（推荐常开 · 国内零延迟）
+- **插件地址**：
+  ```text
+  https://raw.githubusercontent.com/csjoyxy/cainiao-loon-reminder/main/ios_webkit_shield.lpx
+  ```
+- **独立规则集地址（供 Loon `RULE-SET` / Surge / 路由器复用）**：
+  ```text
+  https://raw.githubusercontent.com/csjoyxy/cainiao-loon-reminder/main/rules/ios_webkit_ioc.list
+  ```
+- **特点**：**不修改主配置全局 DNS、0 MitM、0 后台常驻耗电**；精准 `REJECT` 阻断 Google Threat Intelligence (GTIG)、iVerify、Kaspersky 披露的 **Coruna / CryptoWaters**（覆盖 iOS 13–17.2.1 全链 WebKit RCE 与钱包注入模块）、**DarkSword**、**Operation Triangulation（三角行动）** 水坑域名、C2 IP、明文植入载荷路径与 `powerd` 异常外联 UA。
+- **一键自检**：装好后可在插件详情页点击 **「立即自检防护与安全DoH延迟」**，1 秒验证本机 `REJECT` 防线是否生效，并实测当前网络直连安全 DoH 的毫秒级延迟。
+
+### 2. 可选插件：iOS 恶意域名拦截安全 DoH（按网络流畅度自由开关）
+- **插件地址**：
+  ```text
+  https://raw.githubusercontent.com/csjoyxy/cainiao-loon-reminder/main/ios_security_doh.lpx
+  ```
+- **特点**：开启后向 Loon 追加 **Cloudflare Security (`1.1.1.2`)** 与 **Quad9 (`9.9.9.9`)** 实时恶意软件/钓鱼域名拦截加密 DoH（内置静态 Host 引导 IP 防 DNS 抢答）；若当前运营商网络直连海外 DoH 偶有变慢，在 Loon 插件列表**随手关掉本插件开关即可零残留恢复国内解析速度**，不影响上面的核心 IOC 防护插件。
+
+---
+
 ## 本地自测
 
 ```bash
 node tests/test_cainiao_pickup.js
+node tests/test_webkit_shield.js
 ```
