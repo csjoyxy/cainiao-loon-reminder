@@ -1,0 +1,20 @@
+#!name = iOS 恶意域名拦截安全 DoH（可选）
+#!desc = 可选开启：向 Loon 追加 Cloudflare Security (1.1.1.2) 与 Quad9 (9.9.9.9) 恶意软件/钓鱼域名实时拦截加密 DoH，内置静态 Host 引导防抢答；若当前国内网络直连海外 DoH 较慢，随时关闭本插件即可零残留恢复原解析速度
+#!author = csjoyxy
+#!homepage = https://github.com/csjoyxy/cainiao-loon-reminder
+#!icon = https://raw.githubusercontent.com/Koolson/Qure/master/IconSet/Color/Cloudflare.png
+#!source = 21e72802f30b175e3ee62c5d08523199efa45b890d9b2ad4ceccfabb2fa482ef, fe745c4fb58b68078130ca0a0d37c48c8a233739631a51f6bff2c6c40a0db5cc
+#!system = iOS,iPadOS,macOS
+#!system_version = 15
+#!loon_version = 3.2.0(733)
+#!date = 2026-11-26
+#!tag = 安全,DNS,DoH,反钓鱼
+#!type = normal
+
+[General]
+doh-server = https://security.cloudflare-dns.com/dns-query, https://dns.quad9.net/dns-query
+
+[Host]
+# 静态绑定安全 DoH 域名引导 IP，避免首次握手依赖明文 UDP DNS 被污染或拖慢
+security.cloudflare-dns.com = 1.1.1.2
+dns.quad9.net = 9.9.9.9
